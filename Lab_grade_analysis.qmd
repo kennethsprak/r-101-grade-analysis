@@ -56,10 +56,14 @@ grades|>
 
 ```
 
+
 ```{r}
-
+n_students <- grades|>
+  group_by(Group)|>
+  summarise(N = n())
+  
+knitr::kable(n_students, caption = "Number of students in each group")
 ```
-
 
 
 
