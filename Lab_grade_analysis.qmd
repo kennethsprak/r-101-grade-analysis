@@ -34,4 +34,13 @@ summary_grades<-grades|>
 knitr::kable(summary_grades, caption = "Summary statistics of the exam grades")
 ```
 
+## Question 3 
+
+```{r}
+skipping_class<-grades|>
+  filter(is.na(Exam))|>nrow()
+```
+
+`r skipping_class` did not go to the exam.
+
 
