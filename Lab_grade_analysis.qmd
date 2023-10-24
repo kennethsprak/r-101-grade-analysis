@@ -3,6 +3,7 @@ title: "Lab grade analysis"
 autor: "Hugo Sparrman"
 format: html
 editor: visual
+echo:false 
 ---
 
 
@@ -20,4 +21,17 @@ library(ggplot2)
 ```{r}
 grades <- vroom(here("grades.csv"))
 ```
+
+## Question 2 
+
+```{r, message=FALSE}
+summary_grades<-grades|>
+  summarise(Mean = mean(Exam, na.rm = T),
+            Median = median(Exam, na.rm = T),
+            Min = min(Exam, na.rm = T),
+            Max = max(Exam, na.rm = T))
+
+knitr::kable(summary_grades, caption = "Summary statistics of the exam grades")
+```
+
 
