@@ -61,11 +61,16 @@ grades|>
 n_students <- grades|>
   group_by(Group)|>
   summarise(N = n())
-  
 knitr::kable(n_students, caption = "Number of students in each group")
 ```
 
 
+```{r}
+n_students|>
+  ggplot(aes(x = Group, y = N))+
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 
 
 
