@@ -3,7 +3,7 @@ title: "Lab grade analysis"
 autor: "Hugo Sparrman"
 format: html
 editor: visual
-echo:false 
+echo: false 
 ---
 
 
@@ -42,5 +42,26 @@ skipping_class<-grades|>
 ```
 
 `r skipping_class` did not go to the exam.
+
+## Question 4 
+
+```{r}
+grades|>
+  drop_na(Exam)|>
+  ggplot(aes(x = Exam))+
+  geom_bar()+
+  xlab("Exam Score")+
+  ylab("Count")+
+  ggtitle("Exam grade distribution")
+
+```
+
+```{r}
+
+```
+
+
+
+
 
 
