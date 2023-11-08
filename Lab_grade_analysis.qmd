@@ -184,11 +184,22 @@ joined_table|>
 ## Question 16 
 
 ```{r}
-mcq_attendance <- joined_table|>
+joined_table<- joined_table|>
   rowwise()|>
-  mutate("Missing MCQ" = any(is.na(across(starts_with("MCQ")))))|>
-  select(Id, `Missing MCQ`)
+  mutate("Missing MCQ" = any(is.na(across(starts_with("MCQ")))))
+
+MSQ_attendance<- joined_table|>
+  select(Id,`Missing MCQ`)
+
 ```
 
+## Question 17 
+
+```{r}
+p_missed_table <- joined_table|> 
+  group_by(Group)|>
+  summarise("P_missed" = sum(`Missing MCQ`==T)/n())
+  
+```
 
 
