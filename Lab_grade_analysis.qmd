@@ -153,4 +153,16 @@ long_grade|>
 ```
 
 
+## Question 14 
+
+```{r}
+long_grade|>
+  filter(str_starts(name,"Online"))|>
+  group_by(Id)|>
+  summarise("Missed Exam Count" = sum(is.na(value)))
+```
+
+```{r}
+
+```
 
