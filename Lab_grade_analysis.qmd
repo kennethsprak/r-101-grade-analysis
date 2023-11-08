@@ -14,6 +14,7 @@ library(tidyr)
 library(dplyr)
 library(vroom)
 library(ggplot2)
+library(stringr)
 ```
 
 ## Question 1
@@ -126,11 +127,30 @@ long_grade <- grades|>
 
 ```{r}
 
-long_grade|> group_by(Id)|>
+missing_grades<-long_grade|> group_by(Id)|>
   summarise("Total number of missing grades" = sum(is.na(value)))
 
 ```
 
+## Question 12 
+
+```{r}
+missing_grades|>
+  ggplot(aes(x= `Total number of missing grades`))+
+  geom_bar()+
+  ggtitle("Distribution of missing grades per student")+
+  theme(plot.title = element_text(hjust = 0.5))
+  
+```
+
+## Question 13 
+
+```{r}
+long_grade|>
+  filter(str_starts(name,"Exam"))|>
+  group_by(Group)|>
+  summarise("Missed Exam Count" = sum(is.na(value)))
+```
 
 
 
