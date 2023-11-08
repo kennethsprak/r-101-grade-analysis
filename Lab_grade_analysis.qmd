@@ -103,6 +103,8 @@ grades|>
 
 ```
 
+## Question 9
+
 ```{r}
 grades|>
   group_by(Group)|>
@@ -111,5 +113,15 @@ grades|>
   geom_col()+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+
+## Question 10
+
+```{r}
+grades|>
+  pivot_longer(!c(Id,Group))
+  
+```
+
+
 
 
