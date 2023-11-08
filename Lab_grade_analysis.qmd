@@ -110,7 +110,7 @@ grades|>
 grades|>
   group_by(Group)|>
   summarise("Missed Exam Count"=sum(is.na(Exam)))|>
-  ggplot(aes(y = `Missed Exam Count`,x = Group))+
+  ggplot(aes(y = `Missed Exam Count`, x = Group))+
   geom_col()+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
@@ -156,13 +156,29 @@ long_grade|>
 ## Question 14 
 
 ```{r}
-long_grade|>
+MIA <- long_grade|>
   filter(str_starts(name,"Online"))|>
   group_by(Id)|>
-  summarise("Missed Exam Count" = sum(is.na(value)))
+  summarise("Missed online exam Count" = sum(is.na(value)))
 ```
 
+## Question 15
+
 ```{r}
+
+
+joined_table <- inner_join(grades,MIA,by = "Id")
+
+joined_table|>
+  mutate(`Missed online exam Count` = as.factor(`Missed online exam Count`))|>
+  drop_na(Exam)|>
+  ggplot(aes(x = `Missed online exam Count`, y = Exam))+
+  geom_boxplot()+
+  ylab("Final Exam score")+
+  ggtitle("Final exam score", "Conditional on online exam attendance")+
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
 
 ```
 
