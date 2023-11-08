@@ -202,4 +202,28 @@ p_missed_table <- joined_table|>
   
 ```
 
+## Question 18 
+
+```{r}
+avg_grade <- joined_table|>
+  drop_na(Exam)|>
+  group_by(Group)|>
+  summarise("Average grade" = mean(Exam))
+
+
+new_p_missed_table <- joined_table|> 
+  drop_na(Exam)|>
+  group_by(Group)|>
+  summarise("P_missed" = sum(`Missing MCQ`==T)/n())
+
+merged_thing<- inner_join(avg_grade,new_p_missed_table, by = "Group")
+
+merged_thing|>
+  ggplot(aes(x = `Average grade`,y = `P_missed`, color = Group))+
+  geom_point()+
+  ylab("Percentage of missed MCQ")+
+  ggtitle("Relationship between MCQ attendance and final Exam score")+
+  theme(axis.title.y = element_text(vjust = 4))
+
+```
 
