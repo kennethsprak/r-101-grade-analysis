@@ -75,4 +75,41 @@ n_students|>
 
 ## Question 7 
 
+```{r}
+grades|> drop_na(Exam)|>
+  ggplot(aes(x = Group, y = Exam))+
+  geom_boxplot()+
+  ggtitle("Conditional grade distribution")+
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        plot.title = element_text(hjust=0.5))
+```
+
+
+```{r}
+grades|> drop_na(Exam)|>
+  ggplot(aes(x = Group, y = Exam))+
+  geom_violin()+
+  ggtitle("Conditional grade distribution")+
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        plot.title = element_text(hjust=0.5))
+```
+
+## Question 8 
+
+```{r}
+grades|>
+  group_by(Group)|>
+  summarise("Missed Exam Count"=sum(is.na(Exam))) 
+
+```
+
+```{r}
+grades|>
+  group_by(Group)|>
+  summarise("Missed Exam Count"=sum(is.na(Exam)))|>
+  ggplot(aes(y = `Missed Exam Count`,x = Group))+
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
 
