@@ -55,7 +55,7 @@ grades|>
   ggtitle("Exam grade distribution")
 
 ```
-
+## Question 5
 
 ```{r}
 n_students <- grades|>
@@ -64,6 +64,7 @@ n_students <- grades|>
 knitr::kable(n_students, caption = "Number of students in each group")
 ```
 
+## Quetion 6
 
 ```{r}
 n_students|>
@@ -72,5 +73,6 @@ n_students|>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
+## Question 7 
 
 
