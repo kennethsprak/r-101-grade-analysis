@@ -181,4 +181,14 @@ joined_table|>
 
 
 ```
+## Question 16 
+
+```{r}
+mcq_attendance <- joined_table|>
+  rowwise()|>
+  mutate("Missing MCQ" = any(is.na(across(starts_with("MCQ")))))|>
+  select(Id, `Missing MCQ`)
+```
+
+
 
